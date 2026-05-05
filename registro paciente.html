@@ -43,6 +43,25 @@
         .login-link { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; }
         .login-link a { color: var(--secondary-terra); font-weight: 600; }
     </style>
+    <!-- PWA Settings -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#5A8F87">
+    <link rel="apple-touch-icon" href="logo-negro.jpg">
+    
+    <script>
+        // Registrar el Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado con éxito:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Fallo al registrar el Service Worker:', error);
+                    });
+            });
+        }
+    </script>
 </head>
 <body>
     <header>
