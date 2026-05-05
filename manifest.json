@@ -1,0 +1,22 @@
+{
+  "name": "HÁBLALO | Tu espacio seguro",
+  "short_name": "HÁBLALO",
+  "description": "Plataforma de tele-psicología para tu bienestar emocional.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#EADDD1",
+  "theme_color": "#5A8F87",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logonegro.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "logonegro.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
