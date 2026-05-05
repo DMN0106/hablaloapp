@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | HÁBLALO</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES DE COLOR Y TIPOGRAFÍA --- */
+        :root {
+            --bg-beige: #EADDD1;
+            --bg-white: #FFFFFF;
+            --primary-mint: #5A8F87;
+            --accent-mustard: #D4A35C;
+            --secondary-terra: #C26D4A;
+            --text-dark: #1A1A1A;
+            
+            --font-title: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* --- RESET GLOBAL --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: var(--font-body); 
+            color: var(--text-dark); 
+            background-color: var(--bg-beige); /* Usamos el beige para un entorno relajante */
+            line-height: 1.6; 
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        h1, h2, h3 { font-family: var(--font-title); line-height: 1.2; }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- HEADER SIMPLIFICADO --- */
+        header { 
+            background-color: var(--bg-white); 
+            padding: 1rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+        }
+        .logo-container { display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 40px; width: auto; }
+        .back-link { font-weight: 500; color: var(--primary-mint); transition: color 0.2s; }
+        .back-link:hover { color: var(--secondary-terra); }
+
+        /* --- CONTENEDOR PRINCIPAL --- */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 5%;
+        }
+
+        .registro-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .registro-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .registro-header p {
+            font-size: 1.1rem;
+            color: #444;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- TARJETAS DE SELECCIÓN --- */
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .role-card {
+            background-color: var(--bg-white);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            border-top: 6px solid transparent;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .card-paciente { border-top-color: var(--accent-mustard); }
+        .card-psicologo { border-top-color: var(--primary-mint); }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-paciente .icon-circle { background-color: rgba(212, 163, 92, 0.2); color: var(--accent-mustard); }
+        .card-psicologo .icon-circle { background-color: rgba(90, 143, 135, 0.2); color: var(--primary-mint); }
+
+        .role-card h2 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .role-card p { color: #555; margin-bottom: 2rem; }
+
+        /* --- BOTONES --- */
+        .btn {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-weight: 600;
+            text-align: center;
+            padding: 14px 30px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            width: 100%;
+        }
+        .btn:active { transform: scale(0.98); }
+        
+        .btn-mustard { background-color: var(--accent-mustard); color: var(--text-dark); }
+        .btn-mustard:hover { opacity: 0.9; }
+
+        .btn-mint { background-color: var(--primary-mint); color: var(--bg-white); }
+        .btn-mint:hover { opacity: 0.9; }
+
+        @media (min-width: 768px) {
+            .cards-container {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabecera simple con opción de volver -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <img src="logonegro" alt="Logo HÁBLALO" style="height: 80px; width: auto; max-width: 100%; object-fit: contain;">
+        </a>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    </header>
+
+    <main>
+        <div class="registro-header">
+            <h1>Únete a HÁBLALO</h1>
+            <p>Selecciona cómo deseas utilizar la plataforma. Ya sea para comenzar tu proceso personal o para expandir tu práctica profesional.</p>
+        </div>
+
+        <div class="cards-container">
+            
+            <!-- Tarjeta para Pacientes -->
+            <div class="role-card card-paciente">
+                <div class="icon-circle">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <h2>Soy Paciente</h2>
+                <p>Porque ya toca ser tu prioridad y subir tus estándares. Conecta con profesionales colegiados de forma segura, 100% confidencial y sin lidiar con el tráfico.</p>
+                <!-- Este botón redirigirá a la página final de registro del paciente -->
+                <a href="registro paciente.html" class="btn btn-mustard">Crear cuenta de paciente</a>
+            </div>
+
+            <!-- Tarjeta para Psicólogos -->
+            <div class="role-card card-psicologo">
+                <div class="icon-circle">
+                    <i class="fas fa-user-doctor"></i>
+                </div>
+                <h2>Soy Especialista</h2>
+                <p>Digitaliza tu clínica y multiplica tu impacto. Gestiona tu agenda, expedientes clínicos y asegúrate de recibir tus pagos sin riesgos, todo en un solo lugar.</p>
+                <!-- Este botón redirigirá a la página final de registro/aplicación del psicólogo -->
+                <a href="registro psicologo.html" class="btn btn-mint">Aplicar como especialista</a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

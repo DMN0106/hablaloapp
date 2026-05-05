@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Especialista | HÁBLALO</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES DE COLOR Y TIPOGRAFÍA --- */
+        :root {
+            --bg-beige: #EADDD1;
+            --bg-white: #FFFFFF;
+            --primary-mint: #5A8F87;
+            --accent-mustard: #D4A35C;
+            --secondary-terra: #C26D4A;
+            --text-dark: #1A1A1A;
+            --sidebar-width: 260px;
+            
+            --font-title: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* --- RESET GLOBAL --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: var(--font-body); 
+            background-color: #f4f7f6; /* Fondo más clínico y limpio para el profesional */
+            color: var(--text-dark); 
+            display: flex;
+            min-height: 100vh;
+        }
+        h1, h2, h3 { font-family: var(--font-title); }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- SIDEBAR (MENÚ LATERAL CLÍNICO) --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: var(--text-dark); /* Color oscuro para evitar distracciones */
+            color: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-img { height: 50px; width: auto; filter: brightness(0) invert(1); }
+
+        .nav-menu { display: flex; flex-direction: column; padding: 2rem 0; flex: 1; }
+        .nav-item {
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 500;
+            transition: background-color 0.2s, border-left 0.2s;
+            border-left: 4px solid transparent;
+            color: #ccc;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(255,255,255,0.05);
+            border-left: 4px solid var(--accent-mustard);
+            color: var(--bg-white);
+        }
+
+        .nav-item i { font-size: 1.2rem; width: 20px; text-align: center; }
+
+        .sidebar-footer { padding: 1.5rem 2rem; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
+
+        /* --- CONTENIDO PRINCIPAL --- */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 2.5rem 4rem;
+        }
+
+        .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; }
+        .user-greeting h1 { font-size: 2rem; margin-bottom: 0.3rem; color: var(--primary-mint); }
+        .user-greeting p { color: #555; }
+
+        .user-profile { display: flex; align-items: center; gap: 15px; }
+        .notification-bell { position: relative; font-size: 1.5rem; color: #555; cursor: pointer; }
+        .badge {
+            position: absolute; top: -5px; right: -5px; background-color: var(--secondary-terra);
+            color: white; font-size: 0.7rem; font-weight: bold; width: 18px; height: 18px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+        }
+        .avatar {
+            width: 50px; height: 50px; border-radius: 50%; background-color: var(--text-dark);
+            color: var(--accent-mustard); display: flex; justify-content: center; align-items: center;
+            font-weight: bold; font-size: 1.2rem;
+        }
+
+        /* --- GRID DE DASHBOARD --- */
+        .dashboard-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        .card { background-color: var(--bg-white); border-radius: 16px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid #eaeaea; }
+
+        /* --- AGENDA Y SALA VIRTUAL --- */
+        .session-card { border-top: 6px solid var(--primary-mint); }
+        .session-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .patient-info { display: flex; align-items: center; gap: 15px; margin-bottom: 1.5rem; padding: 1.5rem; background-color: #f9f9f9; border-radius: 12px; }
+        .patient-avatar { width: 50px; height: 50px; border-radius: 50%; background-color: var(--bg-beige); color: var(--secondary-terra); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
+        
+        .btn-live {
+            background-color: var(--primary-mint); color: var(--bg-white); padding: 14px 24px; border: none;
+            border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; display: flex;
+            justify-content: center; align-items: center; gap: 10px; width: 100%; transition: opacity 0.2s;
+        }
+        .btn-live:hover { opacity: 0.9; }
+
+        /* --- FINANZAS (Cero Riesgo de Cobro) --- */
+        .finance-card { border-top: 6px solid var(--accent-mustard); }
+        .finance-amount { font-size: 2.5rem; font-family: var(--font-title); color: var(--text-dark); margin: 1rem 0 0.5rem; }
+        .finance-status { display: inline-flex; align-items: center; gap: 5px; color: var(--primary-mint); font-weight: 600; font-size: 0.9rem; background-color: rgba(90,143,135,0.1); padding: 5px 12px; border-radius: 20px; }
+
+        /* --- HERRAMIENTAS CLÍNICAS --- */
+        .tools-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+        .tool-item { display: flex; align-items: center; justify-content: space-between; padding: 1rem; border: 1px solid #eee; border-radius: 8px; cursor: pointer; transition: background-color 0.2s; }
+        .tool-item:hover { background-color: #fcfcfc; border-color: var(--primary-mint); }
+        .tool-name { display: flex; align-items: center; gap: 10px; font-weight: 500; }
+        .tool-name i { color: var(--secondary-terra); }
+
+    </style>
+</head>
+<body>
+
+    <!-- MENÚ LATERAL -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="logonegro" alt="Logo HÁBLALO" style="height: 80px; width: auto; max-width: 100%; object-fit: contain;">
+        </a>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active"><i class="fas fa-desktop"></i> Panel General</a>
+            <a href="#" class="nav-item"><i class="fas fa-calendar-check"></i> Mi Agenda</a>
+            <a href="#" class="nav-item"><i class="fas fa-folder-open"></i> Expedientes Clínicos</a>
+            <a href="#" class="nav-item"><i class="fas fa-clipboard-list"></i> Tests Integrados</a>
+            <a href="#" class="nav-item"><i class="fas fa-file-invoice-dollar"></i> Cobros y Facturación</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="index.html" style="display: flex; align-items: center; gap: 10px; color: #ccc;">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </a>
+        </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        
+        <header class="topbar">
+            <div class="user-greeting">
+                <h1>¡Buen día, Dr. Marroquin!</h1>
+                <p>Tu clínica está optimizada. Tienes 3 sesiones programadas para hoy.</p>
+            </div>
+            <div class="user-profile">
+                <div class="notification-bell">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">2</span>
+                </div>
+                <div class="avatar">CM</div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="left-col">
+                
+                <!-- PRÓXIMA CITA -->
+                <div class="card session-card">
+                    <div class="session-header">
+                        <h2>Próxima sesión en vivo</h2>
+                        <span style="color: #666; font-weight: 500;"><i class="far fa-clock"></i> Hoy, 5:00 PM</span>
+                    </div>
+                    
+                    <div class="patient-info">
+                        <div class="patient-avatar">AP</div>
+                        <div style="flex: 1;">
+                            <h3 style="margin-bottom: 3px; font-size: 1.1rem;">Ana Pérez</h3>
+                            <p style="color: #666; font-size: 0.85rem;">Sesión Quincenal • Expediente #4092</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <span class="finance-status"><i class="fas fa-check-circle"></i> Pago Confirmado</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-live" onclick="abrirSalaVirtual()">
+                        <i class="fas fa-video"></i> Abrir Sala Virtual Segura
+                    </button>
+                </div>
+
+                <!-- ÁREA DE VIDEOLLAMADA (Oculta por defecto) -->
+                <div id="video-area-doc" style="display: none; margin-top: 2rem; background-color: #1A1A1A; height: 450px; border-radius: 16px; position: relative;">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
+                        <i class="fas fa-shield-alt" style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-mint);"></i>
+                        <p>Iniciando entorno seguro encriptado...</p>
+                        <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 10px;">Esperando a que el paciente se conecte</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <div class="right-col" style="display: flex; flex-direction: column; gap: 2rem;">
+                
+                <!-- FINANZAS (CERO RIESGO) -->
+                <div class="card finance-card">
+                    <h3 style="font-size: 1rem; color: #555;">Ingresos Generados (Quincena)</h3>
+                    <div class="finance-amount">Q 2,450.00</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <span class="finance-status" style="background-color: rgba(212,163,92,0.1); color: #9c7336;">
+                            <i class="fas fa-sync-alt"></i> Próximo corte: Viernes 15
+                        </span>
+                        <a href="#" style="color: var(--primary-mint); font-weight: 600; font-size: 0.9rem;">Ver desglose</a>
+                    </div>
+                </div>
+
+                <!-- HERRAMIENTAS CLÍNICAS -->
+                <div class="card">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Herramientas Clínicas</h3>
+                    <p style="font-size: 0.85rem; color: #666;">Acceso rápido a utilidades de la plataforma.</p>
+                    
+                    <div class="tools-list">
+                        <div class="tool-item">
+                            <div class="tool-name"><i class="fas fa-clipboard-check"></i> Asignar Test de Ansiedad</div>
+                            <i class="fas fa-chevron-right" style="color: #ccc;"></i>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-name"><i class="fas fa-file-medical-alt"></i> Redactar Nota Clínica</div>
+                            <i class="fas fa-chevron-right" style="color: #ccc;"></i>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-name"><i class="fas fa-calendar-plus"></i> Ajustar Disponibilidad</div>
+                            <i class="fas fa-chevron-right" style="color: #ccc;"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function abrirSalaVirtual() {
+            const btn = document.querySelector('.btn-live');
+            const videoArea = document.getElementById('video-area-doc');
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparando sala...';
+            btn.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-video-slash"></i> Finalizar Sesión';
+                btn.style.backgroundColor = 'var(--secondary-terra)';
+                videoArea.style.display = 'block';
+                videoArea.scrollIntoView({ behavior: 'smooth' });
+            }, 800);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HÁBLALO | Tu mente, más fresca.</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES DE COLOR Y TIPOGRAFÍA --- */
+        :root {
+            --bg-beige: #EADDD1;
+            --bg-white: #FFFFFF;
+            --primary-mint: #5A8F87;
+            --accent-mustard: #D4A35C;
+            --secondary-terra: #C26D4A;
+            --text-dark: #1A1A1A;
+            
+            --font-title: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* --- RESET GLOBAL --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); color: var(--text-dark); background-color: var(--bg-white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3 { font-family: var(--font-title); line-height: 1.2; margin-bottom: 1rem; }
+        a { text-decoration: none; color: inherit; }
+        section { padding: 4rem 5%; scroll-margin-top: 80px; }
+
+        /* --- BOTONES --- */
+        .btn { display: inline-block; font-family: var(--font-body); font-weight: 600; text-align: center; padding: 14px 24px; border-radius: 8px; border: none; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .btn-primary { background-color: var(--accent-mustard); color: var(--text-dark); }
+        .btn-secondary { background-color: transparent; border: 2px solid var(--text-dark); color: var(--text-dark); }
+        .btn:active { transform: scale(0.98); }
+
+        /* --- HEADER --- */
+        header { background-color: var(--bg-white); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        
+        /* Contenedor del Logo */
+        .logo-container  { display: flex; align-items: center; gap: 10px; }
+        /* Puedes sustituir el src por la URL de tu logo versión horizontal/oscura */
+         { height: 40px; width: auto; } 
+        .logo-text { font-family: var(--font-title); font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+
+        .nav-links { display: none; }
+        .header-actions { display: flex; gap: 1rem; align-items: center; }
+
+        /* --- HERO --- */
+        .hero { background-color: var(--bg-beige); text-align: center; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; padding-top: 6rem; padding-bottom: 5rem; }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .hero p { font-size: 1.1rem; margin-bottom: 2rem; color: #333; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* --- GRID CARDS --- */
+        .features-grid { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+        .feature-card { text-align: center; padding: 2rem; border-radius: 12px; background-color: #fcfcfc; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border-top: 4px solid var(--primary-mint); }
+        .feature-icon { font-size: 2.5rem; color: var(--secondary-terra); margin-bottom: 1rem; }
+
+        /* --- NOSOTROS --- */
+        .nosotros { background-color: var(--bg-white); text-align: center; }
+        .mision-vision { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; text-align: left; }
+        .mv-card { background-color: var(--bg-beige); padding: 2rem; border-radius: 12px; flex: 1; }
+        
+        /* --- PARA PSICÓLOGOS --- */
+        .psicologos { background-color: var(--primary-mint); color: var(--bg-white); text-align: center; }
+        .psicologos .feature-card { background-color: rgba(255,255,255,0.1); border: none; color: var(--bg-white); }
+        .psicologos .feature-icon { color: var(--accent-mustard); }
+        .psicologos p { opacity: 0.9; }
+
+        /* --- FAQ / SEGURIDAD --- */
+        .faq { background-color: var(--bg-white); }
+        .faq-item { background-color: #f9f9f9; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid var(--secondary-terra); }
+        .faq-item h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .faq-item p { font-size: 0.95rem; color: #555; }
+
+        /* --- FOOTER --- */
+        footer { background-color: var(--text-dark); color: var(--bg-white); padding: 4rem 5% 2rem; text-align: center; }
+        .footer-slogan { font-family: var(--font-title); font-size: 1.8rem; margin-bottom: 2rem; color: var(--primary-mint); }
+        .trust-badge { display: inline-flex; align-items: center; gap: 10px; background-color: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 50px; margin-bottom: 2rem; font-size: 0.9rem; }
+        .trust-badge i { color: var(--secondary-terra); }
+
+        @media (min-width: 768px) {
+            .nav-links { display: flex; gap: 2rem; align-items: center; font-weight: 500; }
+            .menu-toggle { display: none; }
+            .hero h1 { font-size: 3.5rem; }
+            .features-grid, .mision-vision { flex-direction: row; justify-content: space-between; }
+            .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <!-- Inserta aquí el logo del fénix -->
+            <img src="logonegro" alt="Logo HÁBLALO" style="height: 80px; width: auto; max-width: 100%; object-fit: contain;">
+        </div>
+        <nav class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#psicologos">Para Psicólogos</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <div class="header-actions">
+            <a href="iniciosesión.html" class="nav-links">Iniciar Sesión</a>
+            <a href="Registro.html" class="btn btn-primary" style="padding: 10px 18px; font-size: 0.9rem;">Registrarse</a>
+            <i class="fas fa-bars menu-toggle"></i>
+    </header>
+
+    <main>
+        <!-- SECCIÓN: INICIO -->
+        <section id="inicio" class="hero">
+            <h1>Tu mente, más fresca.<br>Tu terapia, a tu ritmo.</h1>
+            <p>Conecta hoy mismo con psicólogos certificados. Privado, seguro y sin salir de casa. Porque ya es momento de ser tu prioridad y subir tus estándares.</p>
+            <div class="hero-buttons">
+                <a href="registro paciente.html" class="btn btn-primary">Soy Paciente</a>
+                <a href="registro psicologo.html" class="btn btn-secondary">Soy Psicólogo</a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: NOSOTROS -->
+        <section id="nosotros" class="nosotros">
+            <h2>Tu punto de inflexión</h2>
+            <p>No estamos aquí para decirte que todo está bien. Estamos aquí para darte las herramientas para que tú mismo lo arregles.</p>
+            
+            <div class="mision-vision">
+                <div class="mv-card">
+                    <h3><i class="fas fa-hands-holding-circle" style="color: var(--secondary-terra); margin-right: 10px;"></i>Nuestra Misión</h3>
+                    <p>Ofrecer una plataforma digital innovadora que conecte a psicólogos con pacientes, facilitando el acceso a servicios de salud mental, mediante el uso de herramientas tecnológicas, fáciles de usar y eficientes.</p>
+                </div>
+                <div class="mv-card">
+                    <h3><i class="fas fa-telescope" style="color: var(--secondary-terra); margin-right: 10px;"></i>Nuestra Visión</h3>
+                    <p>Mejorar el acceso a atención psicológica de calidad, a través de una plataforma tecnológica, innovadora y de confianza, ayudando a promover la salud mental y el bienestar emocional de la población guatemalteca[cite: 1].</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: PARA PSICÓLOGOS -->
+        <section id="psicologos" class="psicologos">
+            <h2>Digitaliza tu clínica. Multiplica tu impacto.</h2>
+            <p style="margin-bottom: 2rem;">Únete a la red y gestiona tu práctica de forma integral. Optimiza tus tiempos, asegura tus cobros y enfócate en lo que mejor haces.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-calendar-check feature-icon"></i>
+                    <h3>Gestión Centralizada</h3>
+                    <p>Administra tu agenda, expedientes clínicos seguros y videollamadas en un solo lugar.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt feature-icon"></i>
+                    <h3>Cero Riesgo de Cobro</h3>
+                    <p>Procesamiento de pagos 100% automático. Nos encargamos de la facturación para que tú no tengas que hacerlo[cite: 2].</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3>Pacientes Constantes</h3>
+                    <p>Accede a un flujo regular de pacientes calificados que se ajustan a tu especialidad clínica[cite: 2].</p>
+                </div>
+            </div>
+            <div style="margin-top: 3rem;">
+                <a href="registro psicologo.html" class="btn" style="background-color: var(--bg-white); color: var(--primary-mint);">Aplicar como especialista</a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: FAQ / SEGURIDAD -->
+        <section id="faq" class="faq">
+            <h2 style="text-align: center; margin-bottom: 2.5rem;">Tu seguridad es nuestra prioridad</h2>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>¿Están protegidos mis datos personales?</h3>
+                    <p>Absolutamente. Contamos con privacidad absoluta mediante encriptación de extremo a extremo. Todo lo que hables en tu sesión se mantiene estrictamente confidencial.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Quiénes son los psicólogos de la plataforma?</h3>
+                    <p>Todos nuestros especialistas pasan por un riguroso proceso de verificación. Son profesionales debidamente colegiados y certificados en psicología clínica[cite: 3].</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Necesito instalar alguna aplicación extraña?</h3>
+                    <p>No. Puedes acceder a tu sesión de videollamada desde tu celular o computadora directamente a través de nuestra plataforma, sin necesidad de descargar software de terceros[cite: 3].</p>
+                </div>
+                <div class="faq-item">
+                    <h3>¿Cómo funcionan los pagos y facturación?</h3>
+                    <p>El sistema integra pasarelas de pago 100% seguras. Además, la plataforma genera automáticamente tu Factura Electrónica (FEL) para deducciones médicas[cite: 3].</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-slogan">Siempre hay un camino hacia adelante.</div>
+        <div class="trust-badge">
+            <i class="fas fa-check-circle"></i>
+            <span>Pago 100% seguro. Facturación FEL automática.</span>
+        </div>
+        <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 2rem;">&copy; 2026 HÁBLALO. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>

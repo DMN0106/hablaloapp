@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Paciente | HÁBLALO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-beige: #EADDD1;
+            --bg-white: #FFFFFF;
+            --accent-mustard: #D4A35C;
+            --secondary-terra: #C26D4A;
+            --text-dark: #1A1A1A;
+            --font-title: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background-color: var(--bg-beige); color: var(--text-dark); min-height: 100vh; display: flex; flex-direction: column; }
+        
+        header { background-color: var(--bg-white); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo-img { height: 40px; }
+        .back-link { font-weight: 500; color: var(--text-dark); }
+        
+        main { flex: 1; display: flex; justify-content: center; align-items: center; padding: 3rem 5%; }
+        .form-container { background-color: var(--bg-white); padding: 3rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 100%; max-width: 500px; }
+        
+        h1 { font-family: var(--font-title); font-size: 2rem; margin-bottom: 0.5rem; text-align: center; }
+        p.subtitle { text-align: center; color: #666; margin-bottom: 2rem; }
+        
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        input { width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; font-family: var(--font-body); font-size: 1rem; transition: border-color 0.3s; }
+        input:focus { outline: none; border-color: var(--accent-mustard); }
+        
+        .trust-note { display: flex; align-items: center; gap: 10px; background-color: #f9f9f9; padding: 15px; border-radius: 8px; font-size: 0.85rem; color: #555; margin-bottom: 1.5rem; border-left: 3px solid var(--secondary-terra); }
+        .trust-note i { color: var(--secondary-terra); font-size: 1.2rem; }
+        
+        .btn { width: 100%; padding: 14px; background-color: var(--accent-mustard); color: var(--text-dark); border: none; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; margin-top: 1rem; transition: opacity 0.2s; }
+        .btn:hover { opacity: 0.9; }
+        
+        .login-link { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; }
+        .login-link a { color: var(--secondary-terra); font-weight: 600; }
+    </style>
+</head>
+<body>
+    <header>
+         <img src="logonegro" alt="Logo HÁBLALO" style="height: 80px; width: auto; max-width: 100%; object-fit: contain;">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver</a>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <h1>Crea tu cuenta</h1>
+            <p class="subtitle">Comienza a priorizarte. Es rápido y 100% privado.</p>
+            
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej. Ana Pérez" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" placeholder="Mínimo 8 caracteres" required>
+                </div>
+
+                <div class="trust-note">
+                    <i class="fas fa-lock"></i>
+                    <span>Tus datos están protegidos con encriptación de extremo a extremo. Nadie más tendrá acceso a tu información.</span>
+                </div>
+
+                <button type="submit" class="btn">Comenzar mi proceso</button>
+            </form>
+            
+            <div class="login-link">
+                ¿Ya tienes cuenta? <a href="iniciosesión.html">Inicia sesión aquí</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

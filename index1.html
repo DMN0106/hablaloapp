@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HÁBLALO | Tu mente, más fresca.</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES DE COLOR Y TIPOGRAFÍA --- */
+        :root {
+            --bg-beige: #EADDD1;
+            --bg-white: #FFFFFF;
+            --primary-mint: #5A8F87;
+            --accent-mustard: #D4A35C;
+            --secondary-terra: #C26D4A;
+            --text-dark: #1A1A1A;
+            
+            --font-title: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        /* --- RESET GLOBAL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-title);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- BOTONES --- */
+        .btn {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-weight: 600;
+            text-align: center;
+            padding: 14px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-mustard);
+            color: var(--text-dark);
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-header {
+            background-color: var(--accent-mustard);
+            color: var(--text-dark);
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            display: none; /* Oculto en móvil, visible en desktop */
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--bg-white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .menu-toggle {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: none; /* Oculto en móvil */
+        }
+
+        /* --- SECCIÓN 1: HERO BANNER --- */
+        .hero {
+            background-color: var(--bg-beige);
+            padding: 4rem 5% 3rem;
+            text-align: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        /* --- SECCIÓN 2: PROPUESTA DE VALOR --- */
+        .value-prop {
+            padding: 4rem 5%;
+            background-color: var(--bg-white);
+        }
+
+        .value-prop h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .features-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            background-color: #fcfcfc;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-terra);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* --- SECCIÓN 3: CÓMO FUNCIONA --- */
+        .how-it-works {
+            background-color: var(--primary-mint);
+            color: var(--bg-white);
+            padding: 4rem 5%;
+        }
+
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .step-number {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--accent-mustard);
+            line-height: 1;
+        }
+
+        .step-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-text p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--text-dark); /* Fondo oscuro para contraste */
+            color: var(--bg-white);
+            padding: 4rem 5% 2rem;
+            text-align: center;
+        }
+
+        .footer-slogan {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-mint);
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .trust-badge i {
+            color: var(--secondary-terra);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .social-icons {
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* --- MEDIA QUERIES (DESKTOP) --- */
+        @media (min-width: 768px) {
+            .menu-toggle {
+                display: none;
+            }
+            
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+                font-weight: 500;
+            }
+
+            .btn-header {
+                display: inline-block;
+            }
+
+            .hero {
+                padding: 6rem 15% 5rem;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .btn-primary {
+                width: auto;
+                padding: 16px 40px;
+            }
+
+            .features-grid {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .feature-card {
+                flex: 1;
+            }
+
+            .steps-container {
+                flex-direction: row;
+                justify-content: space-between;
+                gap: 3rem;
+            }
+
+            .step {
+                flex: 1;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: row;
+                justify-content: center;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">HÁBLALO</div>
+        <nav class="nav-links">
+            <a href="#">Inicio</a>
+            <a href="#">Nosotros</a>
+            <a href="#">Para Psicólogos</a>
+            <a href="#">FAQ</a>
+        </nav>
+        <div class="header-actions">
+            <i class="fas fa-bars menu-toggle"></i>
+            <a href="#" class="btn btn-header">Agendar Cita</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Tu mente, más fresca.<br>Tu terapia, a tu ritmo.</h1>
+            <p>Conecta hoy mismo con psicólogos guatemaltecos certificados. Privado, seguro y sin salir de casa. Porque ya es momento de ser tu prioridad y subir tus estándares.</p>
+            <a href="#directorio" class="btn btn-primary">Encontrar a mi psicólogo</a>
+        </section>
+
+        <section class="value-prop">
+            <h2>Diseñado para tu vida, no para complicártela.</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-house-laptop feature-icon"></i>
+                    <h3>Cero Tráfico</h3>
+                    <p>Sesiones virtuales desde tu celular o computadora. Tú eliges el lugar donde te sientes seguro.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-file-invoice-dollar feature-icon"></i>
+                    <h3>Transparencia Total</h3>
+                    <p>Precios en Quetzales. Sin cargos ocultos. Factura Electrónica (FEL) automática para tus deducciones médicas.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-halved feature-icon"></i>
+                    <h3>Privacidad Absoluta</h3>
+                    <p>Plataforma 100% encriptada. Lo que hablas aquí, se queda aquí. Nadie en la sala de espera te verá.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>Tu nuevo comienzo, en 3 simples pasos.</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-text">
+                        <h3>Explora</h3>
+                        <p>Navega nuestro directorio y elige al especialista con el que más conectes.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-text">
+                        <h3>Reserva</h3>
+                        <p>Selecciona tu horario y paga de forma segura con tarjeta o transferencia.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-text">
+                        <h3>Conecta</h3>
+                        <p>Únete a tu videollamada desde nuestro sistema integrado. Sin descargar aplicaciones extrañas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-slogan">Siempre hay un camino hacia adelante.</div>
+        
+        <div class="trust-badge">
+            <i class="fas fa-check-circle"></i>
+            <span>Pago 100% seguro. Facturación FEL automática.</span>
+        </div>
+
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+
+        <div class="footer-links">
+            <a href="#">Términos y Condiciones</a>
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Contacto de Emergencia</a>
+        </div>
+        
+        <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 2rem;">&copy; 2026 HÁBLALO. Todos los derechos reservados en Guatemala.</p>
+    </footer>
+
+</body>
+</html>
