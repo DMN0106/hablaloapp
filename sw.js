@@ -8,7 +8,7 @@ const urlsToCache = [
   '/login.html',
   '/dashboard-paciente.html',
   '/dashboard-psicologo.html',
-  '/logonegro.jpg'
+  '/applogo.png'
 ];
 
 // Instalación del Service Worker
